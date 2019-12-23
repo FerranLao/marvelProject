@@ -24,8 +24,6 @@ app.use(cookieParser());
 
 const marvelApi = require("./routes/marvelApi")
 app.use('/marvel', marvelApi);
-const index = require('./routes/index');
-app.use('/', index);
 
 
 
