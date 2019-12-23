@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const MarvelApi = require("../axios/MarvelApi")
 
-
 router.get('/:type', async (req, res) => {
   const { type } = req.params
   try {
