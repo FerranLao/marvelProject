@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from "react-router-dom"
 import { withStyles } from '@material-ui/core'
 import { navBarStyles } from "../styles"
+
 function NavBar({ classes }) {
     return (
         <div className={classes.nav}>
