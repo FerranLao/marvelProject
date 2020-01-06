@@ -2,7 +2,7 @@ export default {
     cardContainer: {
         display: "flex",
         flexWrap: "wrap",
-        width: "100%"
+        width: "100%",
     },
     searchBar: {
         boxSizing: "border-box",

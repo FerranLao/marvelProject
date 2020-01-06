@@ -12,7 +12,6 @@ export default {
         zIndex: 50,
         top: 0,
         left: 0
-
     },
     link: {
         textDecoration: "none",

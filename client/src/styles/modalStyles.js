@@ -1,12 +1,10 @@
 export default {
     modal: {
-
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         border: 0,
         borderRadius: "15px",
-
     },
     container: {
         display: "flex",

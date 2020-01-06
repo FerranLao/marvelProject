@@ -3,7 +3,6 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const path = require('path');
 const cors = require("cors")
 const app = express();
 
@@ -20,7 +19,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 const marvelApi = require("./routes/marvelApi")
 app.use('/marvel', marvelApi);
