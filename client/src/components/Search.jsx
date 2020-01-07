@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function Search({ classes, type }) {
   const [resultData, setResultData] = useState([]);
   const [error, setError] = useState("");
-  const more = useRef({});
+  const [more, setMore] = useState({});
   const [filter, setFilter] = useState("");
   const debouncer = useRef(
     debounce((data, type, add) => fetchData(data, type, add), 400)
@@ -20,20 +20,20 @@ function Search({ classes, type }) {
     debouncer.current(filter, type);
   }, [filter, type]);
 
-
   const fetchData = async (filter, type, add) => {
     if (!filter) {
-      more.current = {};
+      setMore({});
       return setResultData([]);
     }
     try {
       const { results, total, offset } = await MarvelApi.getList(
-        fetchObj(filter, type, add && more.current.offset + 20),
+        fetchObj(filter, type, add && more.offset + 20),
         type
       );
-      more.current = { total, offset };
-      setResultData(prev=>add ? [...prev, ...results] : results);
+      setMore({ total, offset });
+      setResultData(prev => (add ? [...prev, ...results] : results));
     } catch (e) {
+      console.log(e)
       setError(e.status || "Something went wrong");
     }
   };
@@ -51,9 +51,11 @@ function Search({ classes, type }) {
         className={classes.cardContainer}
         dataLength={resultData.length}
         height="85vh"
-        next={()=>fetchData(filter, type, true)}
-        hasMore={more.current.total > more.current.offset + 20}
-        loader={<h1 style={{width:"100%",textAlign:"center"}}>Loading...</h1>}
+        next={() => fetchData(filter, type, true)}
+        hasMore={more.total > more.offset + 20}
+        loader={
+          <h1 style={{ width: "100%", textAlign: "center" }}>Loading...</h1>
+        }
       >
         {resultData.map(item => (
           <HeroCard info={item} key={item.id} />
